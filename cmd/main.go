@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/MeNoln/go-bus-ws-notifier/pkg/busclient"
+	//"github.com/MeNoln/go-bus-ws-notifier/pkg/busclient"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/gin-gonic/gin"
@@ -44,7 +44,7 @@ func main() {
 		m.Broadcast(msg)
 	})
 
-	go busclient.ProcessMessages(m)
+	//go busclient.ProcessMessages(m)
 
 	r.Run(fmt.Sprintf(":5100"))
 }
