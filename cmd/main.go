@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 
@@ -31,13 +32,21 @@ func main() {
 		m.HandleRequest(c.Writer, c.Request)
 	})
 
+	r.GET("/app", func(c *gin.Context) {
+		c.JSON(200, struct {
+			message string
+		}{
+			message: "im good",
+		})
+	})
+
 	m.HandleMessage(func(s *melody.Session, msg []byte) {
 		m.Broadcast(msg)
 	})
 
 	go busclient.ProcessMessages(m)
 
-	r.Run(":6000")
+	r.Run(fmt.Sprintf(":5100"))
 }
 
 func loadConfig() error {
